@@ -1,0 +1,10 @@
+{
+  "item.atech.alienium_ingot": "Alienium Ingot",
+  "item.atech.raw_alienium": "Raw Alienium",
+
+  "block.atech.alienium_block": "Alienium Block",
+  "block.atech.raw_alienium_block": "Raw Alienium Block",
+  "block.atech.alienium_ore": "Alienium Ore",
+
+  "itemGroup.atech_tab": "aTech"
+}

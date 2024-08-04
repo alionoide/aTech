@@ -1,3 +1,41 @@
+# aTech
+
+## Todo
+- Skill tree thing
+  - Some way of adding / removing skills
+    - Nano injection?
+      - Custom registery?
+    - Made at some workstation
+      - Could just be the workstation?
+  - Instability 
+    - Soft cap on how many can be used
+  - Maybe cool to have something like Luciferium (Ref: RimWorld)
+- Alienium
+  - Tiered resource
+    - 3-5 tiers
+      - Each has different properties / uses
+      - Tier 1
+        - Drops from ore
+        - Smelt in furnace
+    - Increasingly difficult refining
+    - All comes from the same base resource?
+      - Maybe different harvesting methods?
+        - Quick oxidation so maybe needs airtighness?
+          - Maybe just for higher yield
+  - Comes from meteors?
+    - Outer airtight shell, but otherwise porous rock
+    - Potentially different meteors are better for different kinds of the ore
+      - Could have a variety that has been deeply buried 
+        - By lava or otherwise deep underground
+  - Could the player name the item?
+- Tutorial book
+  - Would be cool to have some ThaumCraft style research system
+- Different enchanting table
+  - Uses chiseled bookshelves
+  - Gets enchantments from enchanted books placed in them
+    - Certain minimums
+    - 15 total / 3 for target item
+
 
 Installation information
 =======
