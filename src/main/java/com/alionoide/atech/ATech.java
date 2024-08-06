@@ -1,9 +1,13 @@
 package com.alionoide.atech;
 
+import com.alionoide.atech.datagen.RecipeGenerator;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -18,11 +22,15 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
+
+import java.util.concurrent.CompletableFuture;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ATech.MODID)
@@ -55,6 +63,7 @@ public class ATech
         // Register the Deferred Register to the mod event bus so everything gets registered
         BlocksRegistry.BLOCKS.register(modEventBus);
         BlocksRegistry.BLOCK_ITEMS.register(modEventBus);
+        BlocksRegistry.BLOCK_ENTITES.register(modEventBus);
         ItemsRegistry.ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 

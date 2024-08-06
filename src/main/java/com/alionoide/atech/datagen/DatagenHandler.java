@@ -1,5 +1,7 @@
 package com.alionoide.atech.datagen;
 
+import com.alionoide.atech.ATech;
+import com.mojang.logging.LogUtils;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -7,11 +9,15 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import org.slf4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = "atech")
+@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = ATech.MODID)
 public class DatagenHandler {
+
+    private static final Logger LOGGER = LogUtils.getLogger();
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         // Data generators may require some of these as constructor parameters.
@@ -21,17 +27,22 @@ public class DatagenHandler {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        // Register the provider.
+        // Recipes
         generator.addProvider(
-                // A boolean that determines whether the data should actually be generated.
-                // The event provides methods that determine this:
-                // event.includeClient(), event.includeServer(),
-                // event.includeDev() and event.includeReports().
-                // Since recipes are server data, we only run them in a server datagen.
                 event.includeServer(),
-                // Our provider.
                 new RecipeGenerator(output, lookupProvider)
         );
-        // Other data providers here.
+        // Language
+        generator.addProvider(
+                event.includeClient(),
+                new LanguageGenerator(output)
+        );
+        // Models
+        generator.addProvider(
+                event.includeClient(),
+                new ModelGenerator(output, existingFileHelper)
+        );
+
+        LOGGER.info("aTech: Datagen finished!");
     }
 }
