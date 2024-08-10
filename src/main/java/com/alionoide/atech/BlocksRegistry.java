@@ -19,7 +19,7 @@ public class BlocksRegistry {
     // Create a Deferred Register to hold Blocks which will all be registered under the "atech" namespace
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ATech.MODID);
     public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(ATech.MODID);
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ATech.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ATech.MODID);
 
     public static final DeferredBlock<Block> ALIENIUM_ORE = BLOCKS.registerSimpleBlock("alienium_ore", BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_GREEN)
@@ -49,5 +49,5 @@ public class BlocksRegistry {
             .explosionResistance(30f)
             .sound(SoundType.METAL));
     public static final DeferredItem<BlockItem> CRUSHER_ITEM = BLOCK_ITEMS.registerSimpleBlockItem("crusher", BlocksRegistry.CRUSHER);
-    public static final Supplier<BlockEntityType<CrusherBlockEntity>> CRUSHER_BE = BLOCK_ENTITES.register("crusher_be", () -> BlockEntityType.Builder.of(CrusherBlockEntity::new, CRUSHER.get()).build(null));
+    public static final Supplier<BlockEntityType<CrusherBlockEntity>> CRUSHER_BE = BLOCK_ENTITIES.register("crusher_be", () -> BlockEntityType.Builder.of(CrusherBlockEntity::new, CRUSHER.get()).build(null));
 }

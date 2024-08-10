@@ -1,0 +1,17 @@
+
+    @Override
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult result) {
+        if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            serverPlayer.openMenu(state.getMenuProvider(level, pos));
+        }
+        return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    @Override
+    public ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
+        if (!level.isClientSide) {
+            player.sendSystemMessage(Component.literal("Hello Player!"));
+            return ItemInteractionResult.SUCCESS;
+        }
+        return ItemInteractionResult.PASS;
+    }
