@@ -17,6 +17,12 @@
       - Tier 1
         - Drops from ore
         - Smelt in furnace
+      - Tier 2 
+        - Combine T1 with diamond dust
+        - Diamond dust comes from custom machine
+          - Need to figure out how to open menu
+          - Process items
+          - more [probably]
     - Increasingly difficult refining
     - All comes from the same base resource?
       - Maybe different harvesting methods?

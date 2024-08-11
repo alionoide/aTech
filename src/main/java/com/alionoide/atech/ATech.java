@@ -1,5 +1,6 @@
 package com.alionoide.atech;
 
+import com.alionoide.atech.screens.CrusherScreen;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -17,6 +18,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -110,6 +112,12 @@ public class ATech
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        }
+
+        // Event is listened to on the mod event bus
+        @SubscribeEvent
+        private void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(MenuRegistry.CRUSHER_MENU.get(), CrusherScreen::new);
         }
     }
 }

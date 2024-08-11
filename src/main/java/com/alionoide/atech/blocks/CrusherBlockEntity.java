@@ -3,6 +3,7 @@ package com.alionoide.atech.blocks;
 import com.alionoide.atech.BlocksRegistry;
 import com.alionoide.atech.menus.CrusherMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
@@ -31,16 +32,16 @@ public class CrusherBlockEntity extends BlockEntity implements Container {
     private int maxProgress = 100; // Time required for processing
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        ContainerHelper.loadAllItems(tag, this.items);
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        ContainerHelper.loadAllItems(tag, this.items.getItems(), registries);
         this.progress = tag.getInt("Progress");
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        ContainerHelper.saveAllItems(tag, this.items);
+    public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        ContainerHelper.saveAllItems(tag, this.items.getItems(), registries);
         tag.putInt("Progress", this.progress);
     }
 
